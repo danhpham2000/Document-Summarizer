@@ -37,18 +37,18 @@ const data = {
   navMain: [
     {
       title: "Playground",
-      url: "#",
+      url: "/",
       icon: SquareTerminal,
       isActive: true,
     },
     {
       title: "Models",
-      url: "#",
+      url: "/models",
       icon: Bot,
     },
     {
       title: "Settings",
-      url: "#",
+      url: "/settings",
       icon: Settings2,
     },
   ],
