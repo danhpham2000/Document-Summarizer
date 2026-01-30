@@ -24,20 +24,28 @@ export default function DocumentUpload() {
 
       formData.append("file", file);
 
-      const result = await fetch("/api/upload");
+      const result = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/ingest-file`,
+        {
+          body: formData,
+          method: "POST",
+        }
+      );
 
-      //   if (result.success) {
-      //     setMessage({
-      //       type: "success",
-      //       text: result.message || "PDF processed successfully",
-      //     });
-      //     e.target.value = "";
-      //   } else {
-      //     setMessage({
-      //       type: "error",
-      //       text: result.error || "Failed to process PDF",
-      //     });
-      //   }
+      const data = await result.json();
+
+      if (data.success) {
+        setMessage({
+          type: "success",
+          text: data.message || "PDF processed successfully",
+        });
+        e.target.value = "";
+      } else {
+        setMessage({
+          type: "error",
+          text: data.error || "Failed to process PDF",
+        });
+      }
     } catch (err) {
       setMessage({
         type: "error",
@@ -80,6 +88,11 @@ export default function DocumentUpload() {
               <AlertDescription>{message.text}</AlertDescription>
             </Alert>
           )}
+        </div>
+
+        <div>
+          <h1>Chat with your documents</h1>
+          
         </div>
       </div>
     </div>
