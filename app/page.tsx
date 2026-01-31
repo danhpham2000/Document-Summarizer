@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 type Result = {
   content: string;
   source: string;
+  confidence: number;
 };
 
 export default function DocumentUpload() {
@@ -85,7 +86,8 @@ export default function DocumentUpload() {
 
     setResult({
       content: data.response,
-      source: data.sources,
+      source: data.source,
+      confidence: data.confidence,
     });
   };
   return (
@@ -147,6 +149,13 @@ export default function DocumentUpload() {
                     Source
                   </h1>
                   <p>{result.source}</p>
+                </div>
+
+                <div>
+                  <h1 className="text-md font-medium text-primary mt-3">
+                    Confidence
+                  </h1>
+                  <p>{result.confidence}</p>
                 </div>
               </div>
             )}
